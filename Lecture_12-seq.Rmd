@@ -1,0 +1,20 @@
+% Reading, processing, and writing high throughput sequencing data
+% Matt Shirley
+% 18 April 2013
+
+```{r setup, include=FALSE}
+opts_chunk$set(engine = 'python')
+```
+
+# Why sequencing data?
+
+Only half of the class expressed an interest in
+using Python for sequence analysis. Why should I care?
+- high throughput sequence is *big data*
+- it's also multi-dimensional
+- your data of interest might also be mostly strings
+- it's what your instructor knows
+
+# Reading big data
+
+Okay, let's start:
