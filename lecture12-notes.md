@@ -1,5 +1,5 @@
 % Reading, processing, and writing high throughput sequencing data
-% Matt Shirley
+% Matt Shirley (matt.shirley@jhmi.edu)
 % 18 April 2013
 
 
@@ -31,7 +31,7 @@ it's like [FASTA](http://en.wikipedia.org/wiki/FASTA_format), except with qualit
 	3. strand (+/-) and optional read name
 	4. quality scores
 - These quality scores are encoded as ASCII (American Standard Code for Information Interchange)
-    - to decode, convert from ASCII to numeric and subtract 32	
+    - to decode, convert from ASCII to numeric and subtract 33
 
 # Reading all at once
 
@@ -101,7 +101,7 @@ print [i for i in counting]
 ```
 
 ```
-## <generator object countTo at 0x108271460>
+## <generator object countTo at 0x1084fe410>
 ## [0, 1, 2, 3, 4, 5]
 ```
 
@@ -424,9 +424,17 @@ with lecture12.fastqReader('1000_reads.fastq') as fq:
 	- the GC content
 	- the GC content of the (reverse) complement
 
-Points will be awarded for the following criteria:
+**Points will be awarded for the following criteria:**
 
 - creativity: did you try something new?
 - simplicity: could you accomplish the same thing in less lines of code?
 - correctness: does it run and produce the expected result?
 - completeness: does it do everything we want?
+
+# Let's work on the homework
+
+The code and python module used to generate these slides can be found at [https://github.com/mdshw5/BIOF309](https://github.com/mdshw5/BIOF309).
+
+Start by downloading [lecture12.py](https://github.com/mdshw5/BIOF309/blob/master/lecture12.py), which contains the classes and methods detailed in this lecture.
+
+

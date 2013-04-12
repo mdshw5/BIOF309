@@ -1,7 +1,6 @@
 % Reading, processing, and writing high throughput sequencing data
-% Matt Shirley
+% Matt Shirley (matt.shirley@jhmi.edu)
 % 18 April 2013
-% matt.shirley@jhmi.edu
 
 ```{r setup, include=FALSE}
 opts_chunk$set(engine = 'python')
@@ -238,4 +237,6 @@ with lecture12.fastqReader('1000_reads.fastq') as fq:
 
 The code and python module used to generate these slides can be found at [https://github.com/mdshw5/BIOF309](https://github.com/mdshw5/BIOF309).
 
-Start by downloading `lecture12.py`, which contains the classes and methods detailed in this lecture.
+Start by downloading [lecture12.py](https://github.com/mdshw5/BIOF309/blob/master/lecture12.py), which contains the classes and methods detailed in this lecture.
+
+
