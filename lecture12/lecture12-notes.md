@@ -101,7 +101,7 @@ print [i for i in counting]
 ```
 
 ```
-## <generator object countTo at 0x10dc9c410>
+## <generator object countTo at 0x1039a2410>
 ## [0, 1, 2, 3, 4, 5]
 ```
 
@@ -435,6 +435,6 @@ with lecture12.fastqReader('1000_reads.fastq') as fq:
 
 The code and python module used to generate these slides can be found at [https://github.com/mdshw5/BIOF309](https://github.com/mdshw5/BIOF309).
 
-Start by downloading [lecture12.py](https://github.com/mdshw5/BIOF309/blob/master/lecture12.py), which contains the classes and methods detailed in this lecture.
+Start by downloading [lecture12.py](https://github.com/mdshw5/BIOF309/blob/master/lecture12/lecture12.py), which contains the classes and methods detailed in this lecture.
 
 Are you a [hacker yet](http://www.theverge.com/2013/4/13/4218846/massive-botnet-using-brute-force-attack-to-target-wordpress-sites)? (check out the image and see if it looks familiar)
