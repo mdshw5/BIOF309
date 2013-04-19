@@ -17,11 +17,11 @@ def main():
     fastqFile = args.fastq
     percentgc = args.percentgc
     with lecture12.fastqReader(fastqFile) as fq:
-    """ Opens the specified fastq file using fastqReader class """
+        """ Opens the specified fastq file using fastqReader class """
         for read in fq:
-        """ Every iteration of this loop returns a read class containing data from fastqFile. 
+            """ Every iteration of this loop returns a read class containing data from fastqFile. 
             Below is pseudocode that gives you a guide for completing the homework. 
-        """
+            """
             ## calculate GC content for read.seq
             ## if GC content is greater than percentgc then:
                 ## print the read name
