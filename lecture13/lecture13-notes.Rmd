@@ -1,0 +1,208 @@
+% Hello web: Accessing databases and APIs using Biopython
+% Matt Shirley (matt.shirley@jhmi.edu)
+% 25 April 2013
+
+```{r setup, include=FALSE}
+opts_chunk$set(engine = 'python')
+```
+
+# What is Biopython?
+
+- [Biopython](http://biopython.org) is a Python module providing a collection of
+useful tools for:
+    - parsing bioinformatics file formats
+	- structured, object-oriented access to bioinformatics data
+	- interfacing with online bioinformatics databases
+	- methods for common bioinformatics data manipulations
+
+# Installing Biopython
+
+- Windows
+    - Download the [appropriate installer](http://biopython.org/wiki/Download) for your version of Python
+- Mac & Linux
+    - Easy option: from a terminal execute `sudo pip install Biopython`. If `pip` is not installed, try `easy_install`.
+	- Harder option: Download the [source tarball](http://biopython.org/DIST/biopython-1.61.tar.gz) and follow the
+compilation instructions.
+
+To test whether you successfully installed Biopython, run `python -c 'import Bio'`. If you don't see an error message,
+you're done.
+
+# Simple example: the Seq class
+
+```{r BioSeq}
+from Bio.Seq import Seq
+from Bio.Alphabet import generic_dna
+
+dna = Seq('ATGGGGTTCGATCGTCCTTTCCCAGCTCTGACTAG', generic_dna)
+print str(dna)
+
+rna = dna.transcribe()
+print str(rna)
+
+prot = dna.translate()
+print str(prot)
+```
+
+# Seq class methods
+
+```{r BioSeqMethods}
+from Bio.Seq import Seq
+from Bio.Alphabet import generic_dna
+
+dna = Seq('ATGGGGTTCGATCGTCCTTTCCCAGCTCTGACTAG', generic_dna)
+print str(dna)
+print str(dna.complement())
+print str(dna.reverse_complement())
+
+prot = dna.translate()
+print str(prot)
+try:
+    prot.complement()
+except ValueError, e:
+    print e
+```
+
+Why can we not complement a *Protein*? Simple: Biopython Seq objects have an
+"alphabet" associated with them that prevents you from doing such silly things.
+
+# Counting bases method: GC content example
+
+```{r BioSeqCount}
+from Bio.Seq import Seq
+from Bio.Alphabet import generic_dna
+
+dna = Seq('ATGGGGTTCGATCGTCCTTTCCCAGCTCTGACTAG', generic_dna)
+comp = dna.complement()
+print str(dna)
+print [(base, dna.count(base)) for base in ['A','C','T','G']]
+print [(base, comp.count(base)) for base in ['A','C','T','G']]
+```
+
+Note that you don't really need Biopython for this, except for the complement function.
+
+# Querying Entrez
+
+```{r Entrez}
+from textwrap import fill
+from Bio import Entrez
+Entrez.email = 'matt.shirley@jhmi.edu'
+
+query = Entrez.einfo()
+result = Entrez.read(query)
+keys = result.keys()
+print keys
+results = ' '.join(result['DbList'])
+print fill(results, 60)
+```
+
+Use `einfo()` to list the properties of each database. In this example, we return a
+result listing all of the available databases to query.
+
+# Querying a specific database in Entrez
+
+```{r EntrezPubMed}
+from textwrap import fill
+from Bio import Entrez
+Entrez.email = 'matt.shirley@jhmi.edu'
+
+query = Entrez.einfo(db='pubmed')
+result = Entrez.read(query)
+keys = result.keys()
+print keys
+results = ' '.join(result['DbInfo'])
+print fill(results, 60)
+print result['DbInfo']['Count']
+```
+
+# Listing our search terms
+
+```{r EntrezPubMedTerms}
+from Bio import Entrez
+Entrez.email = 'matt.shirley@jhmi.edu'
+
+query = Entrez.einfo(db='pubmed')
+result = Entrez.read(query)
+fieldlist = result['DbInfo']['FieldList']
+for field in fieldlist:
+    print '%(Name)s, %(FullName)s, %(Description)s' % field
+```
+
+# Searching PubMed
+
+Use `Entrez.esearch` to actually search one of the databases, providing
+a search query term using the fields we identified using `Entrez.einfo`.
+
+```{r PubMedSearchAuthor}
+from Bio import Entrez
+Entrez.email = 'matt.shirley@jhmi.edu'
+
+query = Entrez.esearch(db='pubmed', \
+term='Shirley M[AUTH] AND Johns Hopkins School of Medicine[AFFL]')
+result = Entrez.read(query)
+print result['Count']
+print result['IdList']
+```
+Dang. Only three publications as of:
+
+```{r time, echo=FALSE}
+import datetime
+print str(datetime.date.today())
+```
+
+# Searching Nucleotide
+
+Use `Entrez.efetch` to return a result from an accession number. Here we're grabbing
+the FASTA format sequence from a GenBank accession.
+
+```{r NucleotideSearch}
+from Bio import Entrez
+Entrez.email = 'matt.shirley@jhmi.edu'
+
+query = Entrez.efetch(db='nucleotide', \
+id='312176363', \
+rettype='gb', \
+retmode='text')
+sequence = query.read()
+print sequence
+with open('example.gb', 'w') as out:
+    out.write(sequence)
+```
+
+# Converting file types
+
+```{r SeqIOconvert}
+from Bio import SeqIO
+count = SeqIO.convert('example.gb', 'genbank', 'example.fasta', 'fasta')
+print 'converted {0} records'.format(count)
+```
+
+# Reading sequence files
+
+```{r SeqIOread}
+from textwrap import fill
+from Bio import SeqIO
+with open('example.fasta', 'rU') as infile:
+    sequence = SeqIO.read(infile, 'fasta')
+print sequence.id
+print fill(str(sequence.seq))
+```
+
+# Writing sequence files
+
+```{r SeqIOwrite}
+from Bio import SeqIO
+with open('example.fasta', 'rU') as infile:
+    sequence = SeqIO.read(infile, 'fasta')
+sequence.seq = sequence.seq.translate()
+print sequence.seq[:36]
+with open('example_prot.fasta', 'w') as out:
+    SeqIO.write(sequence, out, 'fasta')
+```
+
+Reading our example FASTA file, translating it to protein,
+then writing a new FASTA file.
+
+# Questions?
+
+There's no homework this week. Let's use this extra time to discuss your
+final project proposals and go through any issues with last week's homework.
