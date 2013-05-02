@@ -22,6 +22,8 @@ def main():
             """ Every iteration of this loop returns a read class containing data from fastqFile. 
             Below is pseudocode that gives you a guide for completing the homework. 
             """
+            print fastqFile
+            print percentgc
             ## calculate GC content for read.seq
             ## if GC content is greater than percentgc then:
                 ## print the read name
