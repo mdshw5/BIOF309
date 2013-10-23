@@ -8,13 +8,16 @@ Overview
 
 1. interacting with R
 2. using R as a calculator
-2. loading and installing packages
+2. variables
+3. data structures
+3. summarizing data
 3. loops, flow-control
 4. apply
 5. basic stats in R
 6. reading and writing delimited data
-7. indexing, subsetting, and combining dataframes
 8. plotting with base R graphics
+2. loading and installing packages
+9. plotting with ggplot2
 
 interacting with R
 ==================
