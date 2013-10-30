@@ -224,6 +224,62 @@ y
 
 But be **careful** because they can be re-assigned
 
+data structures: types of data
+====================
+
+```r
+typeof(1)
+```
+
+```
+[1] "double"
+```
+
+```r
+typeof("A")
+```
+
+```
+[1] "character"
+```
+
+```r
+typeof(TRUE)
+```
+
+```
+[1] "logical"
+```
+
+
+data structures: types of data
+====================
+
+```r
+as.numeric("1")
+```
+
+```
+[1] 1
+```
+
+```r
+as.character(1)
+```
+
+```
+[1] "1"
+```
+
+```r
+as.logical(1)
+```
+
+```
+[1] TRUE
+```
+
+
 data structures: comparisons
 ===================
 
@@ -276,7 +332,7 @@ x != 0
 [1] FALSE
 ```
 
-Comparisons result in *boolean* values
+Comparisons result in *logical* values
 
 data structures: vectors
 ===============
@@ -676,7 +732,7 @@ two   FALSE   TRUE
 three FALSE   TRUE
 ```
 
-Dataframes, just like other structures, can be compared, resulting a *boolean* values.
+Dataframes, just like other structures, can be compared, resulting a *logical* values.
 
 data structures: logical indexing
 ===============
@@ -697,7 +753,7 @@ df[df > 3]
 [1] 6 9
 ```
 
-Passing the boolean result of comparison as an index returns only elements where the comparison was `TRUE`.
+Passing the logical result of comparison as an index returns only elements where the comparison was `TRUE`.
 
 data structures: logical indexing
 ===============
@@ -1038,262 +1094,44 @@ head(cars)
 plotting with base R graphics: scatterplot
 =============================
 
-```r
-plot(cars)
-```
 
-![plot of chunk unnamed-chunk-61](Spoon-fed_R-figure/unnamed-chunk-61.png) 
 
-***
-- `plot` accepts a dataframe with two columns
-- column 1 = x axis
-- column 2 = y axis
 
-plotting with base R graphics: line plot
-=============================
 
-```r
-plot(cars, type="l")
-```
 
-![plot of chunk unnamed-chunk-62](Spoon-fed_R-figure/unnamed-chunk-62.png) 
 
-***
-- valid plot types:
-  - "p" for points
-  - "l" for lines
-  - "b" for both ("o" for overplotted)
-  - "h" for ‘histogram’-like lines
-  - "s" for stair steps ("S" for other)
-  - "n" for no plotting.
 
-plotting with base R graphics: linear regression
-=============================
 
-```r
-lmcars <- lm(dist ~ speed, cars)
-lmcars
-```
 
-```
 
-Call:
-lm(formula = dist ~ speed, data = cars)
 
-Coefficients:
-(Intercept)        speed  
-     -17.58         3.93  
-```
 
-- `lm` fits a linear model: `response ~ terms`
-- in this case the response is distance traveled at speed
 
-plotting with base R graphics: linear regression
-=============================
 
-```r
-plot(cars)
-abline(lmcars)
-```
 
-![plot of chunk unnamed-chunk-64](Spoon-fed_R-figure/unnamed-chunk-64.png) 
 
-***
-- `abline` draws a line from slope and intercept
 
-plotting with base R graphics: graphics parameters
-=============================
 
-```r
-plot(cars, title="Speed vs. Distance", xlab="Speed", ylab="Distance", ylim=c(0,100))
-abline(lmcars)
-```
 
-![plot of chunk unnamed-chunk-65](Spoon-fed_R-figure/unnamed-chunk-65.png) 
 
 
-plotting with base R graphics: graphics parameters
-=============================
 
-```r
-plot(cars, col="red", pch=16, cex=2)
-abline(lmcars, col="blue")
-```
 
-![plot of chunk unnamed-chunk-66](Spoon-fed_R-figure/unnamed-chunk-66.png) 
 
 
-plotting with base R graphics: histograms
-=============================
 
-```r
-hist(cars$speed)
-```
 
-![plot of chunk unnamed-chunk-67](Spoon-fed_R-figure/unnamed-chunk-67.png) 
 
 
-plotting with base R graphics: boxplots
-=============================
 
-```r
-boxplot(cars)
-```
 
-![plot of chunk unnamed-chunk-68](Spoon-fed_R-figure/unnamed-chunk-68.png) 
 
-***
-- Outliers are defined as outside 1.5*IQR
-- IQR = interquartile range
 
-plotting with base R graphics: PCA
-=============================
 
-```r
-pcars <- prcomp(cars)
-biplot(pcars)
-```
 
-![plot of chunk unnamed-chunk-69](Spoon-fed_R-figure/unnamed-chunk-69.png) 
 
-***
-- principal components analysis of variance
-- biplot of the first (and therefore largest) components
-- vector arrows represent magnitude of contribution of each variable
 
-loading and installing packages
-===============================
 
-```r
-library('stats')
-```
 
-- `library()` loads an R *package* into your current session
-- This will import all *functions* from that package for your use
-- If you don't have the package installed, R will complain:
 
-```r
-library('foo')
-```
-
-```
-Error in library("foo") : there is no package called 'foo'
-```
-So we must install the package...
-
-loading and installing packages
-===============================
-Install from CRAN (Comprehensive R Archive Network) repositories
-
-```r
-install.packages('ggplot2')
-```
-
-Install from [Bioconductor](http://www.bioconductor.org/)
-
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite('GRanges')
-```
-
-Install from GitHub
-
-```r
-install.packages('devtools')
-library(devtools)
-install_github('ballgown')
-```
-
-
-plotting with ggplot2
-=====================
-- ggplot = *grammar* of *graphics*
-- combines statistical and graphical models
-- can create very concise, detailed plots using few keystrokes
-
-```r
-library("ggplot2")
-```
-
-
-plotting with ggplot2
-=====================
-
-```r
-head(mtcars[c("wt","mpg","cyl","disp")])
-```
-
-```
-                     wt  mpg cyl disp
-Mazda RX4         2.620 21.0   6  160
-Mazda RX4 Wag     2.875 21.0   6  160
-Datsun 710        2.320 22.8   4  108
-Hornet 4 Drive    3.215 21.4   6  258
-Hornet Sportabout 3.440 18.7   8  360
-Valiant           3.460 18.1   6  225
-```
-
-```r
-p <- ggplot(mtcars, aes(wt, mpg))
-```
-
-- building a plot starts with a dataframe
-- aestetics (aes) are columns of the dataframe
-- usually corresponts to x & y axis
-
-plotting with ggplot2: add a geometry
-=====================
-
-```r
-p + geom_point()
-```
-
-![plot of chunk unnamed-chunk-77](Spoon-fed_R-figure/unnamed-chunk-77.png) 
-
-***
-- now we add a geometry
-- calling the plot produces the graphics
-
-plotting with ggplot2: geometry aes
-=====================
-
-```r
-p + geom_point(aes(colour = factor(cyl)))
-```
-
-![plot of chunk unnamed-chunk-78](Spoon-fed_R-figure/unnamed-chunk-78.png) 
-
-***
-- we can add aestetics to the geometry
-- in this case, color the points by number of cylinders
-
-plotting with ggplot2: geometry aes
-=====================
-
-```r
-p + geom_point(aes(shape = factor(cyl)), size=6, alpha=I(0.5))
-```
-
-![plot of chunk unnamed-chunk-79](Spoon-fed_R-figure/unnamed-chunk-79.png) 
-
-
-plotting with ggplot2: boxplots
-=====================
-
-```r
-p <- ggplot(mtcars, aes(factor(cyl), mpg))
-p + geom_boxplot()
-```
-
-![plot of chunk unnamed-chunk-80](Spoon-fed_R-figure/unnamed-chunk-80.png) 
-
-
-plotting with ggplot2: barplots
-=====================
-
-```r
-ggplot(diamonds, aes(clarity, fill=cut)) + geom_bar()
-```
-
-![plot of chunk unnamed-chunk-81](Spoon-fed_R-figure/unnamed-chunk-81.png) 
 

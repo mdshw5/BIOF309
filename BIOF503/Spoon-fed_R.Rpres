@@ -134,6 +134,22 @@ y
 ```
 But be **careful** because they can be re-assigned
 
+data structures: types of data
+====================
+```{r}
+typeof(1)
+typeof("A")
+typeof(TRUE)
+```
+
+data structures: types of data
+====================
+```{r}
+as.numeric("1")
+as.character(1)
+as.logical(1)
+```
+
 data structures: comparisons
 ===================
 ```{r}
@@ -151,7 +167,7 @@ x == 1
 x == 0
 x != 0
 ```
-Comparisons result in *boolean* values
+Comparisons result in *logical* values
 
 data structures: vectors
 ===============
@@ -314,7 +330,7 @@ df
 ```{r}
 df > 3
 ```
-Dataframes, just like other structures, can be compared, resulting a *boolean* values.
+Dataframes, just like other structures, can be compared, resulting a *logical* values.
 
 data structures: logical indexing
 ===============
@@ -324,7 +340,7 @@ df > 3
 ```{r}
 df[df > 3]
 ```
-Passing the boolean result of comparison as an index returns only elements where the comparison was `TRUE`.
+Passing the logical result of comparison as an index returns only elements where the comparison was `TRUE`.
 
 data structures: logical indexing
 ===============
