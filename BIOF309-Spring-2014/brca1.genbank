@@ -1,0 +1,42 @@
+LOCUS       AHX02571                 356 aa                     MAM 22-APR-2014
+DEFINITION  cytochrome b, partial (mitochondrion) [Crocidura paradoxura].
+ACCESSION   AHX02571
+VERSION     AHX02571.1  GI:612408099
+KEYWORDS    .
+SOURCE      mitochondrion Crocidura paradoxura (paradox shrew)
+  ORGANISM  Crocidura paradoxura
+            Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi;
+            Mammalia; Eutheria; Laurasiatheria; Insectivora; Soricidae;
+            Crocidurinae; Crocidura.
+REFERENCE   1  (residues 1 to 356)
+  AUTHORS   Esselstyn,J.A., Achmadi,A.S. and Maharadatunkamsi,N.
+  TITLE     A new species of shrew (Crocidura: Soricomorpha) from West Java,
+            Indonesia
+  JOURNAL   J. Mammal. 95 (2), 216-224 (2014)
+REFERENCE   2  (residues 1 to 356)
+  AUTHORS   Esselstyn,J.A., Achmadi,A.S. and Maharadatunkamsi,N.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (31-OCT-2013) Museum of Natural Science, Louisiana State
+            University, 119 Foster Hall, Baton Rouge, LA 70803, USA
+COMMENT     Method: conceptual translation.
+FEATURES             Location/Qualifiers
+     source          1..356
+                     /organelle="mitochondrion"
+                     /specimen_voucher="FMNH212880"
+                     /db_xref="taxon:61097"
+                     /organism="Crocidura paradoxura"
+     Protein         <1..356
+                     /product="cytochrome b"
+     CDS             1..356
+                     /transl_table=2
+                     /codon_start=3
+                     /gene="CytB"
+                     /coded_by="KF801066.1:<1..1073"
+ORIGIN
+        1 psnisswwnf gsllgiclia qiltglflam hytsdtmtaf ssvthicrdv nygwlirylh
+       61 angasmffic lflhvgrgly ygsymfletw nigvlllfav matafmgyvl pwgqmsfwga
+      121 tvitnllsai pyigtnlvew iwggfsvdka tltrffafhf ilpfivaala gvhllflhet
+      181 gsnnpsglns dtdkipfhpy ytikdilgal imittlsslv lftpdmlgdp dnyipanpln
+      241 tpphikpewy flfayailrs ipnklggvma lvlsiailmi ipllhtakqr smmfrpmsqc
+      301 mfwilvadla tltwiggqpv ehpfvvigql asmiyfllil limpitsmie nqllkw
+//
